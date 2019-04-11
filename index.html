@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Foundation for Sites</title>
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+<div id="app">
+  <h2>{{title}}</h2>
+  <div class="form">
+    <div class="form-group">
+        <div class="form-group">
+          <label>Tytuł notatki</label>
+          <input type="text" v-model="note.title">
+        </div>
+        <div class="form-group">
+          <label>Treść notatki</label>
+          <textarea type="text" v-model="note.text" rows="3"></textarea>
+        </div>
+        <button class="btn" @click="addNote" v-if="note.text && note.title">Dodaj notatke</button>
+    </div>
+  </div>
+  <div class="put-notes" v-if="notes.length != 0">
+    <p>Twoje notatki:</p>
+      <div class="note-container">
+        <div class="note" v-for="(note, index) in notes">
+          <button class="close" @click="removeNote(index)">&times;</button>
+          <p class="note-paragraph">{{note.title}}</p>
+          <p class="note-paragraph">{{note.date}}</p>
+          <p class="note-paragraph">{{note.text}}</p>
+        </div>
+      </div>
+  </div>
+</div>
+  <script src="js/vendor/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
